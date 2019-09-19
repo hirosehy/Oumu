@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "mylinebot",
+  "builds": [
+    { "src": "model_ja.min.json", "use": "@now/static"},
+    { "src": "server.js", "use": "@now/node" }
+  ],
+  "routes": [
+    { "src": "/", "dest": "server.js" }
+  ]
+}
