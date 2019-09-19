@@ -72,10 +72,11 @@ class Kusa {
 const express = require('express')
 const line = require('@line/bot-sdk')
 const PORT = process.env.PORT || 3000
+require('dotenv').config()
 
 const config = {
-  channelSecret: 'channelSecret',
-  channelAccessToken: 'channelAccessToken'
+  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
 }
 
 const app = express()
@@ -89,7 +90,7 @@ app.post('/', line.middleware(config), (req, res) => {
 
 const client = new line.Client(config)
 
-function handleEvent (event) {
+const handleEvent = event => {
   if (event.type !== 'message' || event.message.type !== 'text') {
     return Promise.resolve(null)
   }
